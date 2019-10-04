@@ -2,7 +2,8 @@
 The user has to provide the data. It has to be a dataframe with one column defining the group and one column with the measured value of an individual in that group. 
 
 **Example of input**
-![Example permutation](permutation1.png)
+
+![Example permutation](Permutation1.png)
 
 The user has to specify the measure of association between the two groups. 
 This has to be one of the three options:  
