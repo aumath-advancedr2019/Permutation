@@ -3,7 +3,7 @@ The user has to provide the data. It has to be a dataframe with one column defin
 
 **Example of input**
 
-![Example permutation](Permutation1.png)
+![Example permutation](Examples/Permutation1.png)
 
 The user has to specify the measure of association between the two groups. 
 This has to be one of the three options:  
@@ -23,7 +23,7 @@ The user has to provide the data. It has to be a dataframe with at least one col
 
 **Example of input**
 
-![Example bootstrap](bootstrap.png)
+![Example bootstrap](Examples/bootstrap.png)
 
 The user has to specify the estimate to be bootstrapped.
 This has to be one of the three options: 
