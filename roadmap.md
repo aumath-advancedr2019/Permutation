@@ -22,7 +22,9 @@
 # Official deadlines: 
 
 5.10: Specification and planning finished
+
 9.11. Production finished
+
 23.11 Review and finalizing finished
 
 # Code writing responsabilty
