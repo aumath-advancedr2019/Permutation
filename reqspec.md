@@ -22,6 +22,7 @@ Output:
 The user has to provide the data. It has to be a dataframe with at least one column with the observed values. 
 
 **Example of input**
+
 ![Example bootstrap](bootstrap.png)
 
 The user has to specify the estimate to be bootstrapped.
