@@ -1,7 +1,8 @@
 # Permutation part
 The user has to provide the data. It has to be a dataframe with one column defining the group and one column with the measured value of an individual in that group. 
 
-![Example permutation](permutation.png)
+**Example of input**
+![Example permutation](permutation1.png)
 
 The user has to specify the measure of association between the two groups. 
 This has to be one of the three options:  
@@ -19,7 +20,8 @@ Output:
 # Bootstrap part
 The user has to provide the data. It has to be a dataframe with at least one column with the observed values. 
 
-**Example of data**
+**Example of input**
+![Example bootstrap](bootstrap.png)
 
 The user has to specify the estimate to be bootstrapped.
 This has to be one of the three options: 
