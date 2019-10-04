@@ -1,6 +1,6 @@
 
-# Milestones: 
-18.10 gammaversion done
+# Milestones 
+18.10 Gammaversion done
 
 9.11 Betaversion done
 
@@ -8,8 +8,8 @@
 ## Goals for gammaversion: 
   - Write permutation function
   - Write bootstrap function
-  - get the deciered output for both functions. 
-  - documentations for the functions and creating a/several vignette(s). 
+  - Get the deciered output for both functions. 
+  - Documentations for the functions and creating a/several vignette(s). 
 
 
 ## Goals for Beta version: 
