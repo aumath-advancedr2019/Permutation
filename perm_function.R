@@ -1,11 +1,13 @@
 #' Permutation
 #'
-#' Tool to do a two-sided permutation test on a dataset
+#' Tool to do a two-sided permutation test on a dataset.
 #'
-#' Given a dataset where column 1 specifies the groups and column 2 specifies the observed values for each group, the function makes a two-sided permuation test. 
+#' Given a dataset where one column specifies the groups and another column specifies the observed values for each group, the function makes a two-sided permuation test. 
 #'
-#' @param data dataset of at least 2 columns. Column 1 has to specify the two groups as factors and column 2 their observed values as integers.
+#' @param groups The one column of the datasat containing the two groups.
 #'
+#' @param observations The one column of the dataset containing the observations for the two groups. 
+#' 
 #' @param test_statistic One of 3 options: "mean" (Default), "median" or "my_method". If "my_method" is used, the user has to have defined a function called my_method() that calculates the test-statistic, with the only input being column 2 from the data.
 #'
 #' @param nPerm Number of permutations. Default is 10^5
@@ -14,16 +16,19 @@
 #' 
 #' @return list
 #'
-#'@examples
+#' @examples
 #'
-#' permtation(data, test_statistic = "median", n_perm = 10^4, plot = FALSE)
+#' permutation(groups = data$Groups, observations = data$Obs, test_statistic = "median", n_perm = 10^4, plot = FALSE)
 #' 
 #' @import tidyverse
 #'
 #' @export
 #'
 
-permutation <- function(data, test_statistic = "mean", nPerm = 10^5, plot=TRUE) {
+
+permutation <- function(groups, observations, test_statistic = "mean", nPerm = 10^5, plot=TRUE) {
+  data = tibble("Group" = groups, "Observations" = observations)
+  
   if (test_statistic == "mean" ) {
     test_statistic = "Difference in mean"
     fun = mean
@@ -42,10 +47,10 @@ permutation <- function(data, test_statistic = "mean", nPerm = 10^5, plot=TRUE) 
   }
   
   test_data <- data %>% 
-    group_by_at(1) %>% 
-    summarise_at( .vars = names(.)[2] , fun)
+    group_by(Group) %>% 
+    summarise(Mean = mean(Observations))
   
-  obs_test_stat <- diff(test_data[[2]])
+  obs_test_stat <- diff(test_data$Mean)
   
   perm_test_values = rep(NA,nPerm)
   
@@ -67,11 +72,11 @@ permutation <- function(data, test_statistic = "mean", nPerm = 10^5, plot=TRUE) 
   
   if (plot == TRUE) {
     plot1 = ggplot(data) +
-      geom_histogram(aes_string(x = names(data)[2], fill=names(data)[1]), 
+      geom_histogram(aes(x = Observations, fill=Group), 
                      alpha = 0.6, bins = 50, color = "white") +
       geom_vline(data=test_data, 
-                 aes_string(xintercept=names(test_data)[2], 
-                            color=names(test_data)[1]), 
+                 aes(xintercept=Mean, 
+                            color=Group), 
                  size = 0.8, linetype="dashed") +
       annotate(geom="text", x = Inf,y=Inf,
                label=paste(test_statistic,"test:",round(obs_test_stat,2)),
@@ -96,11 +101,17 @@ permutation <- function(data, test_statistic = "mean", nPerm = 10^5, plot=TRUE) 
       labs(title = "The null distribution for the test-statistic",
            x = "test_statistic",
            y = "Counts")
+    if (p.value == 0) {
+      print("Warning: nPerm was to low to get any permuted test statistics equal to or more extreme than your observed")
+    }
     return(list("Plot 1: The observed values" = plot1,
                 "Plot 2: The null distribution for the test-statistic" = plot2,
                 "Method" = test_statistic, 
                 "Obs_Test_stat" = obs_test_stat,
                 "perm_p_value" = p.value))
+  }
+  if (p.value == 0) {
+    print("Warning" = "nPerm was to low to get any permuted test statistics equal to or more extreme than your observed")
   }
   return(list("Method" = test_statistic, 
               "Obs_Test_stat" = obs_test_stat,
@@ -121,9 +132,15 @@ my_method <- function(x) {
 }
 
 # Three possible values of the parameter "test_statistic"
-permutation(data = data, test_statistic = "mean")
-permutation(data = data, test_statistic = "median")
-permutation(data = data, test_statistic = "my_method")
+permutation(groups = data$Group, 
+            observations = data$Blood_pressure, 
+            test_statistic = "mean")
+permutation(groups = data$Group,
+            observations = data$Blood_pressure, 
+            test_statistic = "median")
+permutation(groups = data$Group,
+            observations = data$Blood_pressure, 
+            test_statistic = "my_method")
 
 
 
