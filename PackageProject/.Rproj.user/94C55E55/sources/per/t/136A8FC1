@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1571380270229.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "29|97|119|0|\n",
+    "hash" : "119797702",
+    "id" : "136A8FC1",
+    "lastKnownWriteTime" : 1571385288,
+    "last_content_update" : 1571385288042,
+    "path" : "~/Dropbox/Master/R course/Permutation/PackageProject/R/perm_function.R",
+    "project_path" : "R/perm_function.R",
+    "properties" : {
+        "cursorPosition" : "14,60",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
