@@ -27,7 +27,75 @@
 #' @export
 #'
 
-permutation <- function(groups, observations, test_statistic = "mean", nPerm = 10^5, plot=TRUE) {
+# Defining class "permutation"
+output <- function(data = tibble(),
+                   Method = "Unknown",
+                   fun = "mean",
+                   obs_Test_stat = 0,
+                   all_perm_p_values = 0,
+                   perm_p_value = 0,
+                   Warnings = "None") {
+  value <- list(data = data,
+                Method = Method,
+                fun = fun,
+                ObsTestStat = obs_Test_stat,
+                allPermPvalues = all_perm_p_values,
+                PermPvalue = perm_p_value,
+                Warnings = Warnings)
+  attr(value,"class") <- "permutation"
+  value
+}
+
+# Calling the summary on permutation
+summary.permutation <- function(permutation) {
+  print(permutation$data %>% group_by(Group) %>% summarise(Method = permutation$fun(Observations)))
+  print(paste("Method:", permutation$Method))
+  print(paste("Observed test-statistic:", permutation$ObsTestStat))
+  print(paste("Permuted p-value:", permutation$PermPvalue))
+  if (permutation$Warnings != "None") {
+    print(paste("Warnings!!",permutation$Warnings))
+  }
+}
+
+# Calling plot on permutation
+plot.permutation <- function(permutation) {
+  test_data <- permutation$data %>%
+    group_by(Group) %>%
+    summarise(Val = permutation$fun(Observations))
+
+  plot(ggplot(permutation$data) +
+         geom_histogram(aes(x = Observations, fill=Group),
+                        alpha = 0.6, bins = 50, color = "white") +
+         geom_vline(data=test_data,
+                    aes(xintercept=Val,
+                        color=Group),
+                    size = 0.8, linetype="dashed") +
+         annotate(geom="text", x = Inf,y=Inf,
+                  label=paste(permutation$Method,"test:",round(permutation$ObsTestStat,2)),
+                  size = 4,
+                  vjust=2, hjust=1) +
+         theme_bw(base_size = 15) +
+         theme(plot.title = element_text(hjust = 0.5)) +
+         labs(title = "The observed values",
+              y = "Counts"))
+
+  plot(ggplot() +
+         geom_histogram(aes(x = permutation$allPermPvalues),
+                        bins = 50,
+                        color = "white",
+                        fill = "blue",
+                        alpha = 0.6) +
+         geom_vline(aes(xintercept = permutation$ObsTestStat, color = "Observed\ntest-stat"),
+                    size = 0.8, linetype = "dashed") +
+         scale_color_manual(values = c("Observed\ntest-stat" = "red")) +
+         theme_bw(base_size = 15) +
+         theme(plot.title = element_text(hjust = 0.5)) +
+         labs(title = "The null distribution for the test-statistic",
+              x = "test_statistic",
+              y = "Counts"))
+}
+
+permutation <- function(groups, observations, test_statistic = "mean", nPerm = 10^5) {
   data = tibble("Group" = groups, "Observations" = observations)
 
   if (test_statistic == "mean" ) {
@@ -43,15 +111,15 @@ permutation <- function(groups, observations, test_statistic = "mean", nPerm = 1
     fun = my_method
   }
   else {
-    return(print("Test-statistic method not known for function.
+    return(output(Warnings = "Test-statistic method not known for function.
                  See description for further help."))
   }
 
   test_data <- data %>%
     group_by(Group) %>%
-    summarise(Mean = mean(Observations))
+    summarise(Val = fun(Observations))
 
-  obs_test_stat <- diff(test_data$Mean)
+  obs_test_stat <- diff(test_data$Val)
 
   perm_test_values = rep(NA,nPerm)
 
@@ -71,53 +139,24 @@ permutation <- function(groups, observations, test_statistic = "mean", nPerm = 1
 
   p.value = (sum(abs(perm_test_values) >= obs_test_stat)/nPerm)*2
 
-  if (plot == TRUE) {
-    plot1 = ggplot(data) +
-      geom_histogram(aes(x = Observations, fill=Group),
-                     alpha = 0.6, bins = 50, color = "white") +
-      geom_vline(data=test_data,
-                 aes(xintercept=Mean,
-                            color=Group),
-                 size = 0.8, linetype="dashed") +
-      annotate(geom="text", x = Inf,y=Inf,
-               label=paste(test_statistic,"test:",round(obs_test_stat,2)),
-               size = 4,
-               vjust=2, hjust=1) +
-      theme_bw(base_size = 15) +
-      theme(plot.title = element_text(hjust = 0.5)) +
-      labs(title = "The observed values",
-           y = "Counts")
-
-    plot2 = ggplot() +
-      geom_histogram(aes(x = perm_test_values),
-                     bins = 50,
-                     color = "white",
-                     fill = "blue",
-                     alpha = 0.6) +
-      geom_vline(aes(xintercept = obs_test_stat, color = "Observed\ntest-stat"),
-                 size = 0.8, linetype = "dashed") +
-      scale_color_manual(values = c("Observed\ntest-stat" = "red")) +
-      theme_bw(base_size = 15) +
-      theme(plot.title = element_text(hjust = 0.5)) +
-      labs(title = "The null distribution for the test-statistic",
-           x = "test_statistic",
-           y = "Counts")
-    if (p.value == 0) {
-      print("Warning: nPerm was to low to get any permuted test statistics equal to or more extreme than your observed")
-    }
-    return(list("Plot 1: The observed values" = plot1,
-                "Plot 2: The null distribution for the test-statistic" = plot2,
-                "Method" = test_statistic,
-                "Obs_Test_stat" = obs_test_stat,
-                "perm_p_value" = p.value))
-  }
   if (p.value == 0) {
-    print("Warning" = "nPerm was to low to get any permuted test statistics equal to or more extreme than your observed")
+    warn = "Warning" = "nPerm was to low to get any permuted test statistics equal to or more extreme than your observed"
+    return(output(data = data,
+                  Method = test_statistic,
+                  fun = fun,
+                  obs_Test_stat = obs_test_stat,
+                  all_perm_p_values = perm_test_values,
+                  perm_p_value = p.value,
+                  Warnings = warn))
   }
-  return(list("Method" = test_statistic,
-              "Obs_Test_stat" = obs_test_stat,
-              "perm_p_value" = p.value))
+  return(output(data = data,
+                Method = test_statistic,
+                fun = fun,
+                obs_Test_stat = obs_test_stat,
+                all_perm_p_values = perm_test_values,
+                perm_p_value = p.value))
 }
+
 
 
 
