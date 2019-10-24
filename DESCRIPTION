@@ -1,4 +1,4 @@
-Package: PackageProject
+Package: Nice
 Type: Package
 Title: The package provides functions for both permutation and bootstrapping.
 Version: 0.1.0

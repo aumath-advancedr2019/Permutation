@@ -4,16 +4,16 @@
     "created" : 1571380270229.000,
     "dirty" : false,
     "encoding" : "UTF-8",
-    "folds" : "29|97|119|0|\n",
-    "hash" : "119797702",
+    "folds" : "34|39|44|0|\n47|46|55|0|\n58|43|93|0|\n",
+    "hash" : "2644216112",
     "id" : "136A8FC1",
-    "lastKnownWriteTime" : 1571385288,
-    "last_content_update" : 1571385288042,
-    "path" : "~/Dropbox/Master/R course/Permutation/PackageProject/R/perm_function.R",
+    "lastKnownWriteTime" : 1571924560,
+    "last_content_update" : 1571925951353,
+    "path" : "~/Dropbox/Master/R course/Permutation/R/perm_function.R",
     "project_path" : "R/perm_function.R",
     "properties" : {
-        "cursorPosition" : "14,60",
-        "scrollLine" : "0"
+        "cursorPosition" : "111,17",
+        "scrollLine" : "95"
     },
     "read_only" : false,
     "read_only_alternatives" : [

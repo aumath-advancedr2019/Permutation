@@ -2,7 +2,7 @@
 #'
 #' Tool to do a two-sided permutation test on a dataset.
 #'
-#' Given a dataset where one column specifies the groups and another column specifies the observed values for each group, the function makes a two-sided permuation test. The teststatistic used for the test can either be mean, median or a user defined method.
+#' Given a dataset where one column specifies the groups and another column specifies the observed values for each group, the function makes a two-sided permuation test. The teststatistic used for the test can either be mean, median or a user defined method. Summary or plot can be called on the output of class "permutation".
 #'
 #' @param groups The column of the datasat containing the two groups. Has to be factors.
 #'
@@ -12,15 +12,13 @@
 #'
 #' @param nPerm Number of permutations. Default is 10^5
 #'
-#' @param plot If TRUE (Default) the function returns two plots together with the regular output. If FALSE no plots are returned.
-#'
-#' @return list
+#' @return a list of class object "permutation".
 #'
 #' @examples
 #'
 #' The test data provided in the package, BloodPressure, can be used as following:
 #'
-#' permutation(groups = BloodPressure$Groups, observations = BloodPressure$Blood_pressure, test_statistic = "median", n_perm = 10^4, plot = FALSE)
+#' permutation(groups = BloodPressure$Groups, observations = BloodPressure$Blood_pressure, test_statistic = "median", n_perm = 10^4)
 #'
 #' @import tidyverse
 #'
@@ -32,14 +30,14 @@ output <- function(data = tibble(),
                    Method = "Unknown",
                    fun = "mean",
                    obs_Test_stat = 0,
-                   all_perm_p_values = 0,
+                   perm_test_values = 0,
                    perm_p_value = 0,
                    Warnings = "None") {
   value <- list(data = data,
                 Method = Method,
                 fun = fun,
                 ObsTestStat = obs_Test_stat,
-                allPermPvalues = all_perm_p_values,
+                PermTestValues = perm_test_values,
                 PermPvalue = perm_p_value,
                 Warnings = Warnings)
   attr(value,"class") <- "permutation"
@@ -80,7 +78,7 @@ plot.permutation <- function(permutation) {
               y = "Counts"))
 
   plot(ggplot() +
-         geom_histogram(aes(x = permutation$allPermPvalues),
+         geom_histogram(aes(x = permutation$PermTestValues),
                         bins = 50,
                         color = "white",
                         fill = "blue",
@@ -145,7 +143,7 @@ permutation <- function(groups, observations, test_statistic = "mean", nPerm = 1
                   Method = test_statistic,
                   fun = fun,
                   obs_Test_stat = obs_test_stat,
-                  all_perm_p_values = perm_test_values,
+                  perm_test_values = perm_test_values,
                   perm_p_value = p.value,
                   Warnings = warn))
   }
@@ -153,7 +151,7 @@ permutation <- function(groups, observations, test_statistic = "mean", nPerm = 1
                 Method = test_statistic,
                 fun = fun,
                 obs_Test_stat = obs_test_stat,
-                all_perm_p_values = perm_test_values,
+                perm_test_values = perm_test_values,
                 perm_p_value = p.value))
 }
 

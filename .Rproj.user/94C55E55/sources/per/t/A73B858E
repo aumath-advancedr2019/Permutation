@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1571926346870.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "27|86|87|0|\n",
+    "hash" : "2076817109",
+    "id" : "A73B858E",
+    "lastKnownWriteTime" : 1571928285,
+    "last_content_update" : 1571928285716,
+    "path" : "~/Dropbox/Master/R course/Permutation/R/permutation.R",
+    "project_path" : "R/permutation.R",
+    "properties" : {
+        "cursorPosition" : "19,2",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
