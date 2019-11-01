@@ -4,9 +4,11 @@
 \alias{output}
 \title{output}
 \usage{
-output(data = tibble(), Method = "Unknown", fun = "mean",
-  obs_Test_stat = 0, perm_test_values = 0, perm_p_value = 0,
-  Warnings = "None")
+output(data = data.frame(), null.value = c(),
+  alternative = "two-sided", method = "Two-sided permutation test",
+  estimate = c(), data.name = "", statistic = c(),
+  parameters = c(), perm_statistics = 0, p.value = 0,
+  fun = "No function specified", Warnings = "None")
 }
 \value{
 a list of class object "permutation".

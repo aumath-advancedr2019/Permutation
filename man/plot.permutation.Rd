@@ -7,7 +7,7 @@
 \method{plot}{permutation}(permutation)
 }
 \value{
-a two plots of the class object "permutation".
+two plots of the class object "permutation".
 }
 \description{
 plot

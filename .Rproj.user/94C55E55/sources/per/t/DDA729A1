@@ -1,19 +1,19 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1571926346870.000,
+    "created" : 1572594045929.000,
     "dirty" : false,
     "encoding" : "UTF-8",
-    "folds" : "27|86|87|0|\n",
-    "hash" : "2076817109",
-    "id" : "A73B858E",
-    "lastKnownWriteTime" : 1571928285,
-    "last_content_update" : 1571928285716,
+    "folds" : "26|78|96|0|\n120|39|137|0|\n150|46|158|0|\n172|57|207|2|\n208|8|235|2|\n",
+    "hash" : "2212900789",
+    "id" : "DDA729A1",
+    "lastKnownWriteTime" : 1572616884,
+    "last_content_update" : 1572616906998,
     "path" : "~/Dropbox/Master/R course/Permutation/R/permutation.R",
     "project_path" : "R/permutation.R",
     "properties" : {
-        "cursorPosition" : "19,2",
-        "scrollLine" : "0"
+        "cursorPosition" : "12,38",
+        "scrollLine" : "5"
     },
     "read_only" : false,
     "read_only_alternatives" : [

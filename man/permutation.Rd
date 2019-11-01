@@ -4,31 +4,31 @@
 \alias{permutation}
 \title{Permutation}
 \usage{
-permutation(groups, observations, test_statistic = "mean",
-  nPerm = 10^5)
+permutation(groups, observations, method = "mean", nPerm = 10^5)
 }
 \arguments{
 \item{groups}{The column of the datasat containing the two groups. Has to be factors.}
 
 \item{observations}{The column of the dataset containing the observations for the two groups. Has to be numeric.}
 
-\item{test_statistic}{One of 3 options: "mean" (Default), "median" or "my_method". If "my_method", the user has to define a function called "my_method(observations)" that calculates the test-statistic, with the only input being the observations from the data grouped by group.}
+\item{method}{One of 3 options: "mean" (Default), "median" or "my_method". If "my_method", the user has to define a function called "my_method(observations)" that calculates the test-statistic, with the only input being the observations from the data grouped by group.}
 
 \item{nPerm}{Number of permutations. Default is 10^5}
 }
 \value{
-a list of class object "permutation".
+a list of class object "htest" and "permutation".
 }
 \description{
 Tool to do a two-sided permutation test on a dataset.
 }
 \details{
-Given a dataset where one column specifies the groups and another column specifies the observed values for each group, the function makes a two-sided permuation test. The teststatistic used for the test can either be mean, median or a user defined method. Summary or plot can be called on the output of class "permutation".
+Given a dataset where one column specifies the groups and another column specifies the observed values for each group, the function makes a two-sided permuation test. The method to calculate the test statistic used for the test can either be mean, median or a user defined method. Summary, plot or print can be called on the output of class "permutation" and "htest".
 }
 \examples{
 
-The test data provided in the package, BloodPressure, can be used as following:
+The test data provided in the package, BloodPressure, can be used as follows:
 
-permutation(groups = BloodPressure$Groups, observations = BloodPressure$Blood_pressure, test_statistic = "median", n_perm = 10^4)
+permutation(groups = BloodPressure$Groups, observations = BloodPressure$Blood_pressure, method = "median", nPerm = 10^4)
+
 
 }
