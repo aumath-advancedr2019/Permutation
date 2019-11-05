@@ -1,4 +1,4 @@
-# Permutation
+# Sampling
 
 ## Purpose of package
 A package for doing permutations and bootstraping easily in R.
