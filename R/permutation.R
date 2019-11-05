@@ -20,6 +20,9 @@
 #'
 #' permutation(groups = BloodPressure$Groups, observations = BloodPressure$Blood_pressure, method = "median", nPerm = 10^4)
 #'
+#' summary(permutation)
+#'
+#' plot(permutation)
 #'
 #' @export
 #'

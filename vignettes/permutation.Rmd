@@ -28,7 +28,7 @@ The function provides several number of options for the calculation of the test-
 
 Given observations and information about the group, the function returns an output.  
 
-The ouput is of class "permutation" and of class "htest". On these objects both summary() and plot() functions can be called, together with all other functions supplying the "htest" class, e.g. print(). 
+The output is of class "permutation" and of class "htest". On these objects both summary() and plot() functions can be called, together with all other functions supplying the "htest" class, e.g. print(). 
 
 The plot() outputs two plots: 
  
@@ -94,6 +94,16 @@ perm <- permutation(group = BloodPressure$Group, observations = BloodPressure$Bl
 
 # bootstrap()
 
+The bootstrap function provides a way of easily doing a bootstrap of a population estimate given observations. 
+
+The function provides several number of options for the calculation of the bootstrap estimate, where the most used ones (i.e. mean and median) are easily accessible as options to the argument "method". Further more a user specified function, "my_method()", can be given as argument to the "method" argument as well, making it very flexible. 
+
+The output is of class "bootstrap". On this objects both summary() and plot() functions can be called. 
+
+The plot() outputs one plot visualizing the sampling distribution of the population estimate found through bootstrapping, including 95 % confidence intervals and the observed population estimate.  
+
+If the ggplot2 package is a part of the users installed packages, ggplots are made. If not, the plots will be made as base R plots. The user is strongly encouraged to install ggplot2 if not already done to get a better experience.
+
 ## Usage
 
 **Input**
@@ -133,5 +143,9 @@ boot <- bootstrap(observations = PlantGrowth$weight,
 
 `summary(boot)`
 
-`plot(boot)`
+![](../summary_boot.png)
+
+`plot(boot, bins = 30)`
+
+![](../example_ggplot.png)
 

@@ -6,9 +6,8 @@ Author: Cornelia Buus & Lotte Hindhede
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: The package has two functions, permutation() and bootstrap(), which perform a permutation test and a bootstrap respectively. 
     Both functions returns a list with usefull measurements and nice visualizations. 
-    The package also has two build-in datasets: 
+    The package also has one build-in datasets: 
     BloodPressure that is optimal for trying out the permutation function. 
-    ".." that is optimal for trying out the bootstrap. 
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
