@@ -1,6 +1,8 @@
 ---
-title: "permutation"
-output: rmarkdown::html_vignette
+title: "PackageProject"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Permutation}
   %\VignetteEngine{knitr::rmarkdown}
@@ -18,7 +20,7 @@ knitr::opts_chunk$set(
 library(PackageProject)
 ```
 
-## permutation ()
+# permutation()
 
 The permutation function provides a way of easily doing a permutation test of significance between observations of two groups. 
 
@@ -90,4 +92,46 @@ perm <- permutation(group = BloodPressure$Group, observations = BloodPressure$Bl
 ![](../null_dist.png)
 
 
+# bootstrap()
+
+## Usage
+
+**Input**
+
+ - `observations`: The column of the dataframe specifying the observations. Must be specified and of equal length as the group column, no default. 
+ - `method`: The method to calculated the observed population estimate. Can be one of three options: 
+    - `"mean"`: Default. The observed population estimate is the mean of all observations. 
+    - `"median"`: The observed population estimate is the median of all observations.
+    - `"my_method"`: A user defined function named "my_method()" which takes only one argument, the observations and calculates the wanted population estimate. 
+ - `nboot = 10^5`: The number of bootstraps performed. 
+ 
+**Output**
+
+An object of class "permutation" and "htest" containing the following: 
+
+ - `SE`: The standard error of the observed population estiamte.
+ - `bootstrap_estimates`: A list with all bootstrapped estimates calculated by the method provided by the user. 
+ - `conf_intercal`: A character string with the 95 % bootstrap confidence interval of the estimate.
+ - `first_conf_limit`: First limit of the 95 % confidence interval.
+ - `last_conf_limit`: Last limit of the 95 % confidence interval.
+ - `obs_estimate`: The observed population estimate calculated by the method provided by the user. 
+ - `Function`: The function used to calculate the estimate by the method provided. 
+ - `Warnings`: A string containing warnings if any (else None).
+
+## Example
+
+The PlantGrowth dataset can be used to try out the bootstrap function. 
+
+**Syntax**
+
+```{r eval = F}
+boot <- bootstrap(observations = PlantGrowth$weight, 
+                    method = "mean", nboot = 10^5)
+```
+
+**Example output**
+
+`summary(boot)`
+
+`plot(boot)`
 
