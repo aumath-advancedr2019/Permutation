@@ -18,6 +18,13 @@ Output:
   
 **Example of output**
 
+![Example permutation](Summary.png)
+
+![Example permutation](Obs_plot.png)
+
+![Example permutation](null_dist.png)
+
+
 # Bootstrap part
 The user has to provide the data. It has to be a dataframe with at least one column with the observed values. 
 
@@ -36,3 +43,7 @@ Output:
   - Plot of the specifies estimates sampling distribution. 
   
 **Example of output**  
+
+![Example permutation](summary_boot.png)
+
+![Example permutation](example_ggplot.png)
