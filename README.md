@@ -10,7 +10,7 @@ Bootstraping is done by doing resampling of the observed data woth replacement, 
 
 ## Functionality
 The permutation part of the package returns a plot of the distribution under the null-hypotesis and a p-value.  
-The bootstrap will return a blot of the sampling distribution of a given estimate, it's standard error and confidence intervals. 
+The bootstrap will return a plot of the sampling distribution of a given estimate, it's standard error and confidence intervals. 
 
 ## Project members
 Lotte hindhede
