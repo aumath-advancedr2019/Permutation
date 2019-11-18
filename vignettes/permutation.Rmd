@@ -1,10 +1,10 @@
 ---
-title: "PackageProject"
+title: "Sampling"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Permutation}
+  %\VignetteIndexEntry{Sampling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(PackageProject)
+library(Sampling)
 ```
 
 # permutation()
