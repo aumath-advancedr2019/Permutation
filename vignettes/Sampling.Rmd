@@ -32,12 +32,12 @@ The permutation test is done by a series of steps:
 
     1. Calculate the observed test-statistic, e.g. the observed difference in means between the two groups.
     
-        The permutation loop:
+    2. The permutation loop:
         2a. Shuffle all the group labels so they get a new observation. The resampling is done without replacement so the permuted data consist of the same number of observations as the original data, just shuffled. 
         2b. Calculate the permuted test-statistic, e.g. the difference in mean between the two groups in the permuted data. 
         2c. Save the permuted test-statistic in a list and continue the permutation loop, e.g. 10^5 times.
     
-    3. After end permutation cycle the permuted null distribution of the test-statistic is obtained and the permuted p-value can be calculated like this: 
+    3. After end permutation loop the permuted null distribution of the test-statistic is obtained and the permuted p-value can be calculated like this: 
   
 If the observed test-stastistic > 0:
   
@@ -125,8 +125,28 @@ perm <- permutation(group = BloodPressure$Group, observations = BloodPressure$Bl
 
 # bootstrap()
 
-The bootstrap function provides a way of easily doing a bootstrap of a population estimate given observations. 
+The bootstrap function provides a way of easily doing a bootstrap of a population estimate given observations. The populations estimates found through bootstrap includes SE and confidence intervals. 
 
+## Theory behind Bootstrap
+A bootstrap test is a non-parametric test that by resampling provides a way of getting the sampling distribution, by calculating the estimation for each iteration. This makes it possible to get the Standart error of the popultion.
+
+The permutation test is done by a series of steps: 
+
+    1. Calculate the observed estimate, e.g. mean or median.
+    
+    2. The bootstrap loop:
+        2a. randomly pick observation with replacement, so the bootstrapped data consist of the same number of observations as the original data. 
+        2b. Calculate the bootstrap estimate, e.g. mean or median. 
+        2c. Save the bootstrap estimate in a list and continue the bootstrap loop, e.g. 10^5 times.
+    
+    3. After end bootstrap loop the bootstraped sampling distribution of the estimate is obtained and the Standart error and confidence interval can be calculated like this: 
+
+
+Since the standard error is equal to the Stardart deviation of the sampling distribution, we can calculate the SD of the bootstrap with the sd() function from the R stats package.  
+
+Furthermore the confidence interval is found by taking the 0.025 percentile and the 0.975 percentile of the sampling distribution. 
+
+## The Bootstrap() function
 The function provides several number of options for the calculation of the bootstrap estimate, where the most used ones (i.e. mean and median) are easily accessible as options to the argument "method". Further more a user specified function, "my_method()", can be given as argument to the "method" argument as well, making it very flexible. 
 
 The output is of class "bootstrap". On this objects both summary() and plot() functions can be called. 
