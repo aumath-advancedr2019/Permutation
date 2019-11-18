@@ -74,8 +74,12 @@ permutation <- function(groups, observations, method = "mean", nPerm = 10^5) {
 
     perm_test_values[p] <- perm_test_val
   }
-
-  p.value = (sum(abs(perm_test_values) >= abs(obs_test_stat))/nPerm)*2
+  
+  if (obs_test_stat > 0): 
+    p.value = (sum(perm_test_values >= obs_test_stat))/nPerm)*2
+  
+  if (obs_test_stat < 0):
+    p.value = (sum(perm_test_values <= obs_test_stat))/nPerm)*2
 
   if (p.value == 0) {
     warn = "Warning" = "nPerm was to low to get any permuted test statistics equal to or more extreme than your observed"
