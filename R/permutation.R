@@ -18,7 +18,7 @@
 #'
 #' The test data provided in the package, BloodPressure, can be used as follows:
 #'
-#' permutation(groups = BloodPressure$Groups, observations = BloodPressure$Blood_pressure, method = "median", nPerm = 10^4)
+#' permutation(groups = BloodPressure$Group, observations = BloodPressure$Blood_pressure, method = "median", nPerm = 10^4)
 #'
 #' summary(permutation)
 #'
