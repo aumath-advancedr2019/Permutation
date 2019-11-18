@@ -123,7 +123,7 @@ perm <- permutation(group = BloodPressure$Group, observations = BloodPressure$Bl
 ![](../null_dist.png)
 
 
-# bootstrap()
+# Bootstrap
 
 The bootstrap function provides a way of easily doing a bootstrap of a population estimate given observations. The populations estimates found through bootstrap includes SE and confidence intervals. 
 
