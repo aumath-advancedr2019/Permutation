@@ -1,7 +1,7 @@
-\name{Permutation}
-\alias{Permutation}
+\name{Sampling}
+\alias{Sampling}
 
-\title{Permutation}
+\title{Sampling}
 \description{
   A package for doing permutations and bootstraping easily in R. 
   This package provide a means for hypothesis testing when the data does not follow the assumtions of parametric test. 
