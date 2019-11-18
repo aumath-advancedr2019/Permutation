@@ -133,13 +133,14 @@ summary.bootstrap <- function(bootstrap) {
 
 #calling the plot on bootstrap
 plot.bootstrap<-function(bootstrap, bins=30) {
+  library(grid)
   samples<-data.frame((bootstrap)[3:8])
   df<- data.frame(values=bootstrap$bootstrap_estimates)
   grid::grid.rect(gp = grid::gpar(col = "gray"))
   if(nzchar(system.file(package = "ggplot2")) == TRUE){
 
     library(ggplot2)
-    library(grid)
+    
 
     grid.rect(gp = gpar(col = "gray"))
     plot(ggplot2::ggplot()+
