@@ -135,12 +135,13 @@ summary.bootstrap <- function(bootstrap) {
 plot.bootstrap<-function(bootstrap, bins=30) {
   samples<-data.frame((bootstrap)[3:8])
   df<- data.frame(values=bootstrap$bootstrap_estimates)
-  grid::grid.rect(gp = gpar(col = "gray"))
+  grid::grid.rect(gp = grid::gpar(col = "gray"))
   if(nzchar(system.file(package = "ggplot2")) == TRUE){
 
     library(ggplot2)
+    library(grid)
 
-    grid::grid.rect(gp = gpar(col = "gray"))
+    grid.rect(gp = gpar(col = "gray"))
     plot(ggplot2::ggplot()+
            ggplot2::geom_histogram(data=df, aes(x=values), fill="darkcyan", alpha=0.4, bins= 30)+
            theme_bw()+
@@ -150,7 +151,7 @@ plot.bootstrap<-function(bootstrap, bins=30) {
     vp2 <- grid::viewport(x = 0.7,y = 0.9, w = 0.3, h = 0.1,
                           just = c("left", "bottom"))
     grid::pushViewport(vp2)
-    grid::grid.rect(gp = gpar(col = "grey"))
+    grid::grid.rect(gp = grid::gpar(col = "grey"))
     grid::grid.lines(y = (c(0.45)), x=(c(0,0.2)),gp=gpar(col="brown"), draw = TRUE, vp = NULL)
     grid::grid.lines(y = (c(0.95)), x=(c(0,0.2)),gp=gpar(col="chocolate"), draw = TRUE, vp = NULL)
     grid::grid.text("", y = 0.25,x=0.75, gp=gpar(fontsize=7, col="red"))
