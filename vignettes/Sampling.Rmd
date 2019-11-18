@@ -20,10 +20,41 @@ knitr::opts_chunk$set(
 library(Sampling)
 ```
 
-# permutation()
+# Permutation
 
 The permutation function provides a way of easily doing a permutation test of significance between observations of two groups. 
 
+## Theory behind permutation
+
+A permutation test is a non-parametric test that by resampling provides a way of calculating the p-value as a measure of significance of the difference between two groups. The difference can be measured in multiple ways, most commenly the difference in means between two groups are used. 
+
+The permutation test is done by a series of steps: 
+
+    1. Calculate the observed test-statistic, e.g. the observed difference in means between the two groups.
+    
+        The permutation loop:
+        2a. Shuffle all the group labels so they get a new observation. The resampling is done without replacement so the permuted data consist of the same number of observations as the original data, just shuffled. 
+        2b. Calculate the permuted test-statistic, e.g. the difference in mean between the two groups in the permuted data. 
+        2c. Save the permuted test-statistic in a list and continue the permutation loop, e.g. 10^5 times.
+    
+    3. After end permutation cycle the permuted null distribution of the test-statistic is obtained and the permuted p-value can be calculated like this: 
+  
+If the observed test-stastistic > 0:
+  
+$$
+p-value = \frac{\sum(\text{permuted test-statistic} >= \text{observed test-statistic})}{\text{# permutations}} \cdot 2
+$$
+  
+If the observed test-statistic < 0: 
+  
+$$
+p-value = \frac{\sum(\text{permuted test-statistic} <= \text{observed test-statistic})}{\text{# permutations}} \cdot 2
+$$
+  
+The p-value is multiplied by 2 to make it a two-sided permutation test (taking both ends of the null distribution into account). 
+
+## The permutation() function
+  
 The function provides several number of options for the calculation of the test-statistic, where the most used ones (i.e. difference in mean and difference in median) are easily accessible as options to the argument "method". Further more a user specified function, "my_method()", can be given as argument to the "method" argument as well, making it very flexible. 
 
 Given observations and information about the group, the function returns an output.  
