@@ -1,7 +1,5 @@
 # Sampling
 
-OBS: The repository on Github is called Permutation but the actually R-Package is called Sampling. 
-
 ## Purpose of package
 A package for doing permutations and bootstraping easily in R.
 This package provide a means for hypothesis testing when the data does not follow the assumtions of parametric test.
