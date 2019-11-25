@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r, setup}
 library(Sampling)
 ```
 
@@ -105,22 +105,23 @@ The BloodPressure dataset provided in the package to try out the permutation fun
 
 **Syntax**
 
-```{r eval = F}
-perm <- permutation(group = BloodPressure$Group, observations = BloodPressure$Blood_pressure, 
+
+perm <- permutation(group = BloodPressure$Group, 
+                    observations = BloodPressure$Blood_pressure, 
                     method = "mean", nPerm = 10^5)
-```
+
 
 **Example output**
 
 `summary(perm)`
 
-![](../Summary.png)
+![](Summary.png)
 
 `plot(perm)`
 
-![](../Obs_plot.png)
+![](Obs_plot.png)
 
-![](../null_dist.png)
+![](null_dist.png)
 
 
 # Bootstrap
@@ -185,7 +186,7 @@ The PlantGrowth dataset can be used to try out the bootstrap function.
 
 **Syntax**
 
-```{r eval = F}
+```{r, eval = FALSE}
 boot <- bootstrap(observations = PlantGrowth$weight, 
                     method = "mean", nboot = 10^5)
 ```
@@ -194,8 +195,9 @@ boot <- bootstrap(observations = PlantGrowth$weight,
 
 `summary(boot)`
 
-![](../summary_boot.png)
+![](summary_boot.png)
 
 `plot(boot, bins = 30)`
 
-![](../example_ggplot.png)
+![](example_ggplot.png)
+
