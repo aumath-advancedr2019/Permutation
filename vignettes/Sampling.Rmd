@@ -105,11 +105,11 @@ The BloodPressure dataset provided in the package to try out the permutation fun
 
 **Syntax**
 
-
+```{r, eval=FALSE}
 perm <- permutation(group = BloodPressure$Group, 
                     observations = BloodPressure$Blood_pressure, 
                     method = "mean", nPerm = 10^5)
-
+```
 
 **Example output**
 
