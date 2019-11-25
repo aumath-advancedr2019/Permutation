@@ -1,22 +1,23 @@
 destination: docs
 
 reference:
-    - title: Main functions
-     desc: These are the main functions of our package. 
-     contents: 
-        - permutation
-        - bootstrap
-    - title: Class functions
-    desc: These functions can be called on the output from the main functions. 
-    contents: 
-        - starts_with(plot)
-        - starts_with(summary)
-    - title: Data
-    desc: Data supplied to test the permutation function. 
-    contents: 
-        - BloodPressure
-    - title: Class defining functions
-    desc: Functions that defines the two classes. 
+  - title: Main functions
+    desc: These are the main functions of our package.
     contents:
-        - bootclass
-        - output
+      - permutation
+      - bootstrap
+      - sampling
+  - title: Class functions
+    desc: These functions can be called on the output from the main functions.
+    contents:
+      - starts_with("plot")
+      - starts_with("summary")
+  - title: Data
+    desc: Data supplied to test the permutation function.
+    contents:
+      - BloodPressure
+  - title: Class defining functions
+    desc: Functions that defines the two classes.
+    contents:
+      - bootclass
+      - output
