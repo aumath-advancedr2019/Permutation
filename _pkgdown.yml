@@ -9,10 +9,8 @@ reference:
     - title: Class functions
     desc: These functions can be called on the output from the main functions. 
     contents: 
-        - plot.permutation
-        - summary.permutation
-        - plot.bootstrap
-        - summary.bootstrap
+        - starts_with(plot)
+        - starts_with(summary)
     - title: Data
     desc: Data supplied to test the permutation function. 
     contents: 
