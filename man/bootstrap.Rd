@@ -24,7 +24,7 @@ Given a dataset where column 1 specifies the groups and column 2 specifies the o
 }
 \examples{
 
-bootstrap(PlantGrowth$weight, method="mean", nboot = 10000)
+suppresMessages(bootstrap(PlantGrowth$weight, method="mean", nboot = 10000))
 
 summary(bootstrap)
 
