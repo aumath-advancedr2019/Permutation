@@ -4,15 +4,15 @@ reference:
     - title: Main functions
      desc: These are the main functions of our package. 
      contents: 
-        - permutation
-        - bootstrap
+        - permutation()
+        - bootstrap()
     - title: Class functions
     desc: These functions can be called on the output from the main functions. 
     contents: 
-        - plot.permutation
-        - summary.permutation
-        - plot.bootstrap
-        - summary.bootstrap
+        - plot(<permutation>)
+        - summary(<permutation>)
+        - plot(<bootstrap>)
+        - summary(<bootstrap>)
     - title: Data
     desc: Data supplied to test the permutation function. 
     contents: 
@@ -20,5 +20,5 @@ reference:
     - title: Class defining functions
     desc: Functions that defines the two classes. 
     contents:
-        - bootclass
-        - output
+        - bootclass()
+        - output()
